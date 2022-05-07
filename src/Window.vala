@@ -155,7 +155,7 @@ namespace Goldsearch {
             for (int i=0;i<9;i++){
                 mas[i]=0;
             }
-            int n=Random.int_range(0,9);
+            int n=Random.int_range(0, 9);
             mas[n]=1;
             int m=0;
             do{
