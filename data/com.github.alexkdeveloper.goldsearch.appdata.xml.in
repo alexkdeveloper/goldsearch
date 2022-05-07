@@ -6,7 +6,7 @@
   <name>Gold Search</name>
   <summary>A game in which you need to look for gold</summary>
   <description>
-    <p>Look in which barrel the gold is hidden. You will come across various unnecessary things, including bombs. If you find a bomb, then you will die and the game will end.</p>
+    <p>Look in which barrel the gold is hidden. You will come across various unnecessary things, including bombs. If you find a bomb, then the game is over.</p>
   </description>
   <developer_name>Alex Kryuchkov</developer_name>
   <url type="homepage">https://github.com/alexkdeveloper/goldsearch</url>
