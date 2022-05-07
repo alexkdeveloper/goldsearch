@@ -16,21 +16,21 @@ namespace Goldsearch {
 		private Gtk.Image i_8;
 		private Gtk.Image i_9;
         private Bus bus;
-        private Element pipeline_bombe;
-        private Element pipeline_monets;
+        private Element pipeline_bomb;
+        private Element pipeline_coins;
         private int[] mas;
-        Gst.Bus bombe_bus;
-        Gst.Bus monets_bus;
+        Gst.Bus bomb_bus;
+        Gst.Bus coins_bus;
 
         public Window (Gtk.Application application) {
             set_application(application);
             try {
-                pipeline_bombe = Gst.parse_launch ("playbin uri=resource:/com/github/alexkdeveloper/goldsearch/sounds/bomb.mp3");
-                pipeline_monets = Gst.parse_launch("playbin uri=resource:/com/github/alexkdeveloper/goldsearch/sounds/coins.mp3");
+                pipeline_bomb = Gst.parse_launch ("playbin uri=resource:/com/github/alexkdeveloper/goldsearch/sounds/bomb.mp3");
+                pipeline_coins = Gst.parse_launch("playbin uri=resource:/com/github/alexkdeveloper/goldsearch/sounds/coins.mp3");
               } catch (Error e) {
                  stderr.printf ("Error: %s\n", e.message);
               }
-              bus = new Bus (pipeline_bombe, pipeline_monets);
+              bus = new Bus (pipeline_bomb, pipeline_coins);
               connect_signals ();
         }
 
@@ -130,13 +130,13 @@ namespace Goldsearch {
         generate();
         }
         public void connect_signals(){
-            bombe_bus = pipeline_bombe.get_bus ();
-            bombe_bus.add_signal_watch ();
-            bombe_bus.message.connect (bus.parse_message);
+            bomb_bus = pipeline_bomb.get_bus ();
+            bomb_bus.add_signal_watch ();
+            bomb_bus.message.connect (bus.parse_message);
   
-            monets_bus = pipeline_monets.get_bus ();
-            monets_bus.add_signal_watch ();
-            monets_bus.message.connect (bus.parse_message);
+            coins_bus = pipeline_coins.get_bus ();
+            coins_bus.add_signal_watch ();
+            coins_bus.message.connect (bus.parse_message);
         }
         private void on_new_game_clicked(){
             var dialog = new Gtk.MessageDialog(this, Gtk.DialogFlags.MODAL,Gtk.MessageType.QUESTION, Gtk.ButtonsType.OK_CANCEL, _("Start a new game?"));
@@ -217,9 +217,9 @@ namespace Goldsearch {
         }
       private void play_sound(string str){
         if (str == "bomb"){
-            pipeline_bombe.set_state(State.PLAYING);
+            pipeline_bomb.set_state(State.PLAYING);
         }else{
-            pipeline_monets.set_state(State.PLAYING);
+            pipeline_coins.set_state(State.PLAYING);
         }
       }
     }

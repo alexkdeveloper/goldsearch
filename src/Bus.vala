@@ -6,12 +6,12 @@ namespace Goldsearch {
 
   public class Bus {
 
-    private Element pipeline_bombe;
-    private Element pipeline_monets;
+    private Element pipeline_bomb;
+    private Element pipeline_coins;
 
-    public Bus (Element pipeline_bombe, Element pipeline_monets) {
-        this.pipeline_bombe = pipeline_bombe;
-        this.pipeline_monets = pipeline_monets;
+    public Bus (Element pipeline_bomb, Element pipeline_coins) {
+        this.pipeline_bomb = pipeline_bomb;
+        this.pipeline_coins = pipeline_coins;
     }
 
     public void parse_message (Message message){
@@ -29,14 +29,14 @@ namespace Goldsearch {
         case Gst.MessageType.EOS:
           stdout.puts ("End-Of-Stream reached.\n");
 
-          if(message.src == this.pipeline_bombe){
-            this.pipeline_bombe.seek_simple (Gst.Format.TIME,  Gst.SeekFlags.FLUSH | Gst.SeekFlags.KEY_UNIT, 0);
-            this.pipeline_bombe.set_state (Gst.State.NULL);
+          if(message.src == this.pipeline_bomb){
+            this.pipeline_bomb.seek_simple (Gst.Format.TIME,  Gst.SeekFlags.FLUSH | Gst.SeekFlags.KEY_UNIT, 0);
+            this.pipeline_bomb.set_state (Gst.State.NULL);
           }
 
-          if(message.src == this.pipeline_monets){
-            this.pipeline_monets.seek_simple (Gst.Format.TIME,  Gst.SeekFlags.FLUSH | Gst.SeekFlags.KEY_UNIT, 0);
-            this.pipeline_monets.set_state (Gst.State.NULL);
+          if(message.src == this.pipeline_coins){
+            this.pipeline_coins.seek_simple (Gst.Format.TIME,  Gst.SeekFlags.FLUSH | Gst.SeekFlags.KEY_UNIT, 0);
+            this.pipeline_coins.set_state (Gst.State.NULL);
           }
           break;
 
