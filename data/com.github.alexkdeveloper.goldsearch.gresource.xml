@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gresources>
+  <gresource prefix="/com/github/alexkdeveloper/goldsearch">
+    <file compressed="true">images/1.png</file>
+    <file compressed="true">images/2.png</file>
+    <file compressed="true">images/3.png</file>
+    <file compressed="true">images/4.png</file>
+    <file compressed="true">images/5.png</file>
+    <file compressed="true">images/barrel.png</file>
+    <file compressed="true">sounds/bomb.mp3</file>
+    <file compressed="true">sounds/coins.mp3</file>
+  </gresource>
+</gresources>
+

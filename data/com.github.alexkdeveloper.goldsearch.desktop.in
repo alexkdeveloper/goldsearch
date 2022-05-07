@@ -1,0 +1,10 @@
+[Desktop Entry]
+Type=Application
+Name=Gold Search
+Comment=A game in which you need to look for gold
+GenericName=Gold Search
+Exec=com.github.alexkdeveloper.goldsearch
+Icon=com.github.alexkdeveloper.goldsearch
+Terminal=false
+Categories=GNOME;GTK;Game;
+Keywords=search;gold;barrel;game;
