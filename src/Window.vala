@@ -4,7 +4,7 @@ using Gst;
 
 namespace Goldsearch {
 
-    public class Window : Gtk.Window {
+    public class Window : Adw.Window {
 
         private Gtk.Image i_1;
 		private Gtk.Image i_2;
@@ -22,7 +22,7 @@ namespace Goldsearch {
         Gst.Bus bomb_bus;
         Gst.Bus coins_bus;
 
-        public Window (Gtk.Application application) {
+        public Window (Adw.Application application) {
             set_application(application);
             try {
                 pipeline_bomb = Gst.parse_launch ("playbin uri=resource:/com/github/alexkdeveloper/goldsearch/sounds/bomb.mp3");
@@ -35,15 +35,7 @@ namespace Goldsearch {
         }
 
       construct {
-        set_title("Gold Search");
-        Gtk.HeaderBar headerbar = new Gtk.HeaderBar();
-        set_titlebar(headerbar);
-        var new_game_button = new Gtk.Button ();
-        new_game_button.set_icon_name("input-gaming-symbolic");
-        new_game_button.vexpand = false;
-      new_game_button.set_tooltip_text("New game");
-      new_game_button.clicked.connect(on_new_game_clicked);
-      headerbar.pack_start(new_game_button);
+       set_title("Gold Search");
        i_1 = new Image ();
        i_1.set_size_request(120,120);
        i_2 = new Image ();
@@ -108,8 +100,9 @@ namespace Goldsearch {
           show_image(i_9, 9);
        });
         var grid = new Grid();
-        grid.halign = Gtk.Align.CENTER;
-        grid.valign = Gtk.Align.CENTER;
+        grid.vexpand = true;
+        grid.halign = Align.CENTER;
+        grid.valign = Align.CENTER;
         grid.margin_bottom = 20;
         grid.margin_top = 20;
         grid.margin_end = 20;
@@ -125,7 +118,17 @@ namespace Goldsearch {
         grid.attach(b_7,0,2,1,1);
         grid.attach(b_8,1,2,1,1);
         grid.attach(b_9,2,2,1,1);
-        set_child (grid);
+        var new_game_button = new Gtk.Button ();
+        new_game_button.set_icon_name("input-gaming-symbolic");
+        new_game_button.vexpand = false;
+        new_game_button.set_tooltip_text("New game");
+        new_game_button.clicked.connect(on_new_game_clicked);
+        var headerbar = new Adw.HeaderBar();
+        headerbar.pack_start(new_game_button);
+        var box = new Box(Orientation.VERTICAL, 0);
+        box.append(headerbar);
+        box.append(grid);
+        set_content(box);
         show_barrels();
         generate();
         }
