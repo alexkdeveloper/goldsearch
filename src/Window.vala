@@ -121,7 +121,7 @@ namespace Goldsearch {
         var new_game_button = new Gtk.Button ();
         new_game_button.set_icon_name("input-gaming-symbolic");
         new_game_button.vexpand = false;
-        new_game_button.set_tooltip_text("New game");
+        new_game_button.set_tooltip_text(_("New game"));
         new_game_button.clicked.connect(on_new_game_clicked);
         var headerbar = new Adw.HeaderBar();
         headerbar.pack_start(new_game_button);
@@ -183,7 +183,7 @@ namespace Goldsearch {
             image.set_from_resource("/com/github/alexkdeveloper/goldsearch/images/"+mas[i-1].to_string()+".png");
             if(mas[i-1]==1){
                 play_sound("bomb");
-                var dialog_alert = new Gtk.MessageDialog(this, Gtk.DialogFlags.MODAL, Gtk.MessageType.INFO, Gtk.ButtonsType.OK, "You found the bomb.\nThe game is over!");
+                var dialog_alert = new Gtk.MessageDialog(this, Gtk.DialogFlags.MODAL, Gtk.MessageType.INFO, Gtk.ButtonsType.OK, _("You found the bomb.\nThe game is over!"));
                 dialog_alert.set_title(_("Message"));
                 dialog_alert.response.connect((_) => { 
                     show_all();
