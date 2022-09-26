@@ -142,16 +142,20 @@ namespace Goldsearch {
             coins_bus.message.connect (bus.parse_message);
         }
         private void on_new_game_clicked(){
-            var dialog = new Gtk.MessageDialog(this, Gtk.DialogFlags.MODAL,Gtk.MessageType.QUESTION, Gtk.ButtonsType.OK_CANCEL, _("Start a new game?"));
-            dialog.set_title(_("Question"));
-            dialog.show ();
+        var dialog = new Adw.MessageDialog(this, _("Start a new game?"), "");
+            dialog.add_response("cancel", _("_Cancel"));
+            dialog.add_response("ok", _("_OK"));
+            dialog.set_default_response("ok");
+            dialog.set_close_response("cancel");
+            dialog.set_response_appearance("ok", SUGGESTED);
+            dialog.show();
             dialog.response.connect((response) => {
-                     if (response == Gtk.ResponseType.OK) {
-                        show_barrels();
-                        generate();
-                     }
-                     dialog.close();
-                 });
+                if (response == "ok") {
+                    show_barrels();
+                    generate();
+                }
+                dialog.close();
+            });
         }
         private void generate(){
             mas=new int[9];
@@ -182,13 +186,19 @@ namespace Goldsearch {
         private void show_image(Image image, int i){
             image.set_from_resource("/com/github/alexkdeveloper/goldsearch/images/"+mas[i-1].to_string()+".png");
             if(mas[i-1]==1){
-                play_sound("bomb");
-                var dialog_alert = new Gtk.MessageDialog(this, Gtk.DialogFlags.MODAL, Gtk.MessageType.INFO, Gtk.ButtonsType.OK, _("You found the bomb.\nThe game is over!"));
-                dialog_alert.set_title(_("Message"));
-                dialog_alert.response.connect((_) => { 
-                    show_all();
-                    dialog_alert.close(); 
-                });
+               play_sound("bomb");
+               string heading = _("You found the bomb.\nThe game is over!");
+               string body = "";
+        var dialog_alert = new Adw.MessageDialog(this, heading, body);
+            if (body != "") {
+                dialog_alert.set_body(body);
+            }
+            dialog_alert.add_response("ok", _("_OK"));
+            dialog_alert.set_response_appearance("ok", SUGGESTED);
+            dialog_alert.response.connect((_) => {
+	         show_all();
+	         dialog_alert.close();
+	     });
                 dialog_alert.show();
                 return;
             }
