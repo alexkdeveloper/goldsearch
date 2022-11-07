@@ -1,0 +1,40 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"POT-Creation-Date: 2022-07-04 23:30+0800\n"
+"PO-Revision-Date: 2022-11-07 19:33+0100\n"
+"Last-Translator: Albano Battistella<albano_battistella@hotmail.com>\n"
+"Language-Team: Italian\n"
+"Language: it\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<12 || n%100>14) ? 1 : 2);\n"
+"X-Generator: Poedit 3.1\n"
+"X-Poedit-Basepath: ../src\n"
+"X-Poedit-SearchPath-0: Window.vala\n"
+
+#: Window.vala:124
+msgid "New game"
+msgstr "Nuova partita"
+
+#: Window.vala:145
+msgid "Start a new game?"
+msgstr "Iniziare una nuova partita?"
+
+#: Window.vala:146
+msgid "Question"
+msgstr "Domanda"
+
+#: Window.vala:186
+msgid ""
+"You found the bomb.\n"
+"The game is over!"
+msgstr ""
+"Hai trovato la bomba.\n"
+"Il gioco è finito!"
+
+#: Window.vala:187
+msgid "Message"
+msgstr "Messaggio"
