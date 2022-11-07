@@ -5,16 +5,24 @@ using Gst;
 namespace Goldsearch {
 
     public class Window : Adw.Window {
-
-        private Gtk.Image i_1;
-		private Gtk.Image i_2;
-		private Gtk.Image i_3;
-		private Gtk.Image i_4;
-		private Gtk.Image i_5;
-		private Gtk.Image i_6;
-        private Gtk.Image i_7;
-		private Gtk.Image i_8;
-		private Gtk.Image i_9;
+        private Button b_1;
+        private Button b_2;
+        private Button b_3;
+        private Button b_4;
+        private Button b_5;
+        private Button b_6;
+        private Button b_7;
+        private Button b_8;
+        private Button b_9;
+        private Image i_1;
+		private Image i_2;
+		private Image i_3;
+		private Image i_4;
+		private Image i_5;
+		private Image i_6;
+        private Image i_7;
+		private Image i_8;
+		private Image i_9;
         private Bus bus;
         private Element pipeline_bomb;
         private Element pipeline_coins;
@@ -54,23 +62,23 @@ namespace Goldsearch {
        i_8.set_size_request(120,120);
        i_9 = new Image ();
        i_9.set_size_request(120,120);
-       var b_1 = new Button();
+       b_1 = new Button();
        b_1.set_child(i_1);
-       var b_2 = new Button();
+       b_2 = new Button();
        b_2.set_child(i_2);
-       var b_3 = new Button();
+       b_3 = new Button();
        b_3.set_child(i_3);
-       var b_4 = new Button();
+       b_4 = new Button();
        b_4.set_child(i_4);
-       var b_5 = new Button();
+       b_5 = new Button();
        b_5.set_child(i_5);
-       var b_6 = new Button();
+       b_6 = new Button();
        b_6.set_child(i_6);
-       var b_7 = new Button();
+       b_7 = new Button();
        b_7.set_child(i_7);
-       var b_8 = new Button();
+       b_8 = new Button();
        b_8.set_child(i_8);
-       var b_9 = new Button();
+       b_9 = new Button();
        b_9.set_child(i_9);
        b_1.clicked.connect(() =>{
           show_image(i_1, 1);
@@ -151,6 +159,7 @@ namespace Goldsearch {
             dialog.show();
             dialog.response.connect((response) => {
                 if (response == "ok") {
+                    buttons_activated(true);
                     show_barrels();
                     generate();
                 }
@@ -197,6 +206,7 @@ namespace Goldsearch {
             dialog_alert.set_response_appearance("ok", SUGGESTED);
             dialog_alert.response.connect((_) => {
 	         show_all();
+             buttons_activated(false);
 	         dialog_alert.close();
 	     });
                 dialog_alert.show();
@@ -228,6 +238,17 @@ namespace Goldsearch {
             i_8.set_from_resource("/com/github/alexkdeveloper/goldsearch/images/"+mas[7].to_string()+".png");
             i_9.set_from_resource("/com/github/alexkdeveloper/goldsearch/images/"+mas[8].to_string()+".png");
         }
+    private void buttons_activated(bool b){
+          b_1.sensitive = b;
+          b_2.sensitive = b;
+          b_3.sensitive = b;
+          b_4.sensitive = b;
+          b_5.sensitive = b;
+          b_6.sensitive = b;
+          b_7.sensitive = b;
+          b_8.sensitive = b;
+          b_9.sensitive = b;
+      }
       private void play_sound(string str){
         if (str == "bomb"){
             pipeline_bomb.set_state(State.PLAYING);
